@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,11 +17,9 @@ public class Main {
         if (folder.isFile()) {
             return folder.length();
         }
-        long sum = 0;
         File[] files = folder.listFiles();
-        for (File file : files) {
-            sum += getFolderSize(file);
-        }
+        long sum = Stream.of(files).mapToLong(File::length).sum();
+
         return sum;
     }
 }
