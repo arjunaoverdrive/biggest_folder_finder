@@ -14,7 +14,7 @@ public class Main {
             ForkJoinPool pool = new ForkJoinPool();
             long size = pool.invoke(calculator);
             System.out.println(getHumanReadableSize(size));
-
+            System.out.println(getFromHumanReadableSize(getHumanReadableSize(size)));
             //System.out.println(getFolderSize(file));
 
             long duration = System.currentTimeMillis() - start;
@@ -39,17 +39,12 @@ public class Main {
         float size = 0;
         for (int i = 0; folderSize / Math.pow(BYTE_FACTOR, i) >= 1; i++) {
             size = Math.round((float) (folderSize / Math.pow(BYTE_FACTOR, i)));
-            if (i > 3) break;
+            if (i > 4) break;
         }
         String sizeUnit = null;
+        String[] cIUnits = {"B", "K", "M", "G", "T"};
         for (int i = 0; folderSize / Math.pow(BYTE_FACTOR, i) > 1; i++) {
-            if (i == 0) sizeUnit = "байт";
-            else if (i == 1) sizeUnit = "Кб";
-            else if (i == 2) sizeUnit = "Мб";
-            else if (i == 3) {
-                sizeUnit = "Гб"; }
-            else sizeUnit = "Тб";
-            break;
+            sizeUnit = cIUnits[0];
         }
         return String.format("%s%s", size, sizeUnit);
     }
@@ -57,16 +52,16 @@ public class Main {
     private static long getFromHumanReadableSize(String folderString) {
         final int BYTE_FACTOR = 1024;
         long size = Long.valueOf(folderString.replaceAll("[^0-9]",""));
-        if (folderString.contains("байт")){
+        if (folderString.contains("B")){
             return size;
         }
-        else if (folderString.contains("Кб")){
+        else if (folderString.contains("K")){
             return size * BYTE_FACTOR;
         }
-        else if (folderString.contains("Мб")){
+        else if (folderString.contains("M")){
             return (long) (size * Math.pow(BYTE_FACTOR,2));
         }
-        else if (folderString.contains("Гб")){
+        else if (folderString.contains("G")){
             return (long) (size * Math.pow(BYTE_FACTOR, 3));
         }
         else return (long) (size * Math.pow(BYTE_FACTOR, 4));
