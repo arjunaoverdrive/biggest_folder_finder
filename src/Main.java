@@ -5,6 +5,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             String folderPath = "C:\\Users\\Igor\\Desktop";
+            long sizeLimit = 1024 *1024 * 50;
             File file = new File(folderPath);
             Node root = new Node(file);
             long start = System.currentTimeMillis();
