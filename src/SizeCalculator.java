@@ -1,9 +1,4 @@
-import java.io.File;
-import java.util.HashMap;
-
 public class SizeCalculator {
-    //    private static char[] sizeMultipliers =
-//            {'B', 'K', 'M', 'G', 'T'};
     private static char[] cIUnits = {'B', 'K', 'M', 'G', 'T'};
     final static int BYTE_FACTOR = 1024;
 
