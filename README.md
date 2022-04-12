@@ -1,7 +1,7 @@
 # biggest_folder_finder  
 An app to find subdirectories exceeding a given file size in a given directory  
 # Technologies used  
-** Java, ForkJoinPool **  
+**Java, ForkJoinPool**  
 # Usage    
 To run the app, open a CLI/terminal session, navigate to the folder where the jar file is located,  
   and run the following command:  
